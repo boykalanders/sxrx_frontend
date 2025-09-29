@@ -51,6 +51,7 @@ const Register = () => {
             Sign up to get started
           </Typography>
           {error && <Alert severity="error" sx={{ width: '100%' }}>{error}</Alert>}
+          }
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1}}>
             <Grid container spacing={2}>
               <TextField
