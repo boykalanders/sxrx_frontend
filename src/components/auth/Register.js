@@ -22,7 +22,8 @@ const Register = () => {
     password: '',
     firstName: '',
     lastName: '',
-    state: ''
+    state: '',
+    phone: ''
   });
   const [loading, setLoading] = useState(false);
 
@@ -85,6 +86,14 @@ const Register = () => {
                 type="password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+              <TextField
+                required
+                fullWidth
+                placeholder="Phone Number"
+                name="phone"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
               <TextField
                 required

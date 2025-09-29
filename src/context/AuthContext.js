@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(null);
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = 'http://localhost:5000';
 
 // Add axios interceptor for token refresh
 axios.interceptors.response.use(
@@ -107,14 +107,15 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       setError(null);
-      const response = await axios.post(`${BASE_URL}/api/auth/register`, userData);
+      const response = await axios.post(`${BASE_URL}/api/shopify/register`, {
+        ...userData,
+        role: 'patient'
+      });
       const { token, refreshToken, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('user', JSON.stringify(user));
       console.log(user)
-      const response1 = await axios.post(`${BASE_URL}/api/tebraUser/signup/${user.id}`);
-      console.log(response1);
       setUser(user);
       return user;
     } catch (err) {
